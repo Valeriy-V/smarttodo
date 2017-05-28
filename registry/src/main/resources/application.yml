@@ -1,0 +1,8 @@
+server:
+  port: ${PORT:8761}
+
+#Disable this instance register itself
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false

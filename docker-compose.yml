@@ -1,0 +1,45 @@
+version: '2.1'
+
+services:
+
+  registry:
+    image: venzyk/smarttodo-registry
+    build: registry
+    ports:
+      - 8761:8761
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+
+  todo:
+    image: venzyk/smarttodo-todo
+    build: todo
+    links:
+      - "mongo:mongodb"
+      - registry
+    ports:
+      - 8099:8099
+
+  login:
+    image: venzyk/smarttodo-login
+    build: login
+    depends_on:
+      - mongo
+    links:
+      - "mongo:mongodb"
+      - registry
+    ports:
+      - 8077:8077
+
+  gateway:
+    image: venzyk/smarttodo-gateway
+    build: gateway
+    links:
+      - registry
+      - login
+      - todo
+    ports:
+      - 8888:8888
+

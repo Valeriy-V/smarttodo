@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: gateway
+
+zuul:
+  routes:
+    login-service:
+        path: /api/**
+        url: http://localhost:8077
+        stripPrefix: false
+        sensitiveHeaders:
+    todo-service:
+        path: /todo/**
+        url: http://localhost:8099
+        stripPrefix: false
+        sensitiveHeaders:
