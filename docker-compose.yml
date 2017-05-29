@@ -12,12 +12,15 @@ services:
     image: mongo
     ports:
       - 27017:27017
+    volumes:
+      - /docker/vol/mybootservice/mongodb/data:/data/db
 
   todo:
     image: venzyk/smarttodo-todo
     build: todo
     links:
-      - "mongo:mongodb"
+      - mongodb
+    depends_on:
       - registry
     ports:
       - 8099:8099
@@ -25,10 +28,9 @@ services:
   login:
     image: venzyk/smarttodo-login
     build: login
-    depends_on:
-      - mongo
     links:
-      - "mongo:mongodb"
+      - mongodb
+    depends_on:
       - registry
     ports:
       - 8077:8077
