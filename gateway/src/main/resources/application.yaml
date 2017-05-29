@@ -5,15 +5,20 @@ spring:
   application:
     name: gateway
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+
 zuul:
   routes:
     login-service:
         path: /api/**
-        url: http://localhost:8077
+        url: http://login:8077
         stripPrefix: false
         sensitiveHeaders:
     todo-service:
         path: /todo/**
-        url: http://localhost:8099
+        url: http://todo:8099
         stripPrefix: false
         sensitiveHeaders:

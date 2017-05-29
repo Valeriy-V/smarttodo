@@ -1,6 +1,10 @@
 server:
   port: ${PORT:8761}
 
+spring:
+  application:
+    name: registry
+
 #Disable this instance register itself
 eureka:
   client:
