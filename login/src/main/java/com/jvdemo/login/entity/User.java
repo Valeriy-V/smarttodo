@@ -15,4 +15,12 @@ public class User {
   private String email;
   private String password;
 
+  public User(){}
+
+  public User(String id, String login, String email, String password) {
+    this.id = id;
+    this.login = login;
+    this.email = email;
+    this.password = password;
+  }
 }

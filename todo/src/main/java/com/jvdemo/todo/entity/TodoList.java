@@ -14,4 +14,10 @@ public class TodoList {
     private String id;
 
     private List<Entry> entryList;
+
+    public TodoList(String id, List<Entry> entryList)
+    {
+        this.id = id;
+        this.entryList = entryList;
+    }
 }
